@@ -22,8 +22,8 @@ def decryption(shifts, cipher_text):
     return result.upper()
 
 
-data = input("Enter the Data: ")
-rotations = int(input("Enter the Key: "))
+data = input("Enter the Data to Encrypt: ")
+rotations = int(input("Enter the Key for Rotations: "))
 
 cipher_data = encryption(rotations, data)
 print("CIPHER TEXT:", cipher_data)
