@@ -1,30 +1,20 @@
-key = 'abcdefghijklmnopqrstuvwxyz'
+def caesar_cipher(text, shift):
+    result = ""
 
-def encryption(shifts, plain_text):
-    result = ''
-    for char in plain_text.lower():
-        try:
-            cipher = key[(key.index(char) + shifts) % 26]
-            result += cipher
-        except ValueError:
+    for char in text:
+        if char.isalpha():
+            base = ord('A' if char.isupper() else 'a')
+            new_char = chr((ord(char) - base + shift) % 26 + base)
+            result += new_char
+        else:
             result += char
-    return result.upper()
 
-
-def decryption(shifts, cipher_text):
-    result = ''
-    for char in cipher_text.lower():
-        try:
-            plain = key[(key.index(char) - shifts) % 26]
-            result += plain
-        except ValueError:
-            result += char
-    return result.upper()
+    return result
 
 
 data = input("Enter the Data to Encrypt: ")
 rotations = int(input("Enter the Key for Rotations: "))
 
-cipher_data = encryption(rotations, data)
+cipher_data = caesar_cipher(data, rotations)
 print("CIPHER TEXT:", cipher_data)
-print("PLAIN TEXT:", decryption(rotations, cipher_data))
+print("PLAIN TEXT:", caesar_cipher(cipher_data, -rotations))
